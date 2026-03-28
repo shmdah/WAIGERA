@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mercedes-Benz AMG G 63</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background-color: #e9ecef; 
+      color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden; 
+    }
+
+    /* Top Header/Navigation */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 60px;
+      z-index: 10;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #555;
+    }
+
+    /* Simple CSS Mercedes Logo approximation */
+    .merc-logo {
+      width: 32px;
+      height: 32px;
+      border: 1.5px solid #555;
+      border-radius: 50%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .merc-logo::before {
+      content: '';
+      position: absolute;
+      width: 1px;
+      height: 16px;
+      background: #555;
+      top: 0;
+    }
+    
+    .merc-logo::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-top: 1px solid #555;
+      border-left: 1px solid #555;
+      transform: rotate(45deg);
+      top: 10px;
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #444;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hamburger {
+      width: 24px;
+      height: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 2px;
+      width: 100%;
+      background-color: #333;
+    }
+
+    /* Main Content Area */
+    .main-content {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 0 60px;
+    }
+
+    .text-section {
+      max-width: 450px;
+      z-index: 10;
+      margin-top: -80px; 
+    }
+
+    .main-title {
+      font-size: 72px;
+      font-weight: 200; 
+      color: #333;
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #555;
+      font-weight: 400;
+      margin-bottom: 30px;
+      max-width: 300px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #333;
+      color: #e9ecef;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      font-family: serif; 
+    }
+
+    /* Car Image Styling */
+    .car-showcase {
+      position: absolute;
+      right: 12%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60%;
+      max-width: 900px;
+      z-index: 5;
+    }
+
+    .car-showcase img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0px 30px 20px rgba(0,0,0,0.25)); 
+    }
+
+    /* Right Pagination Dots */
+    .pagination {
+      position: absolute;
+      right: 60px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      border: 1px solid #555;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background-color: #333;
+      border-color: #333;
+    }
+
+    /* Footer */
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 60px;
+      z-index: 10;
+    }
+
+    .copyright {
+      font-size: 9px;
+      font-weight: 600;
+      color: #777;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .amg-logo-text {
+      font-size: 16px;
+      font-weight: 800;
+      color: #333;
+      font-style: italic;
+      letter-spacing: 2px;
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .header {
+        padding: 20px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .main-content {
+        padding: 0 20px;
+        align-items: flex-start;
+        padding-top: 20px;
+      }
+      .text-section {
+        margin-top: 0;
+      }
+      .main-title {
+        font-size: 48px;
+      }
+      .car-showcase {
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        right: auto;
+      }
+      .pagination {
+        right: 15px;
+      }
+      .footer {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="brand">
+      <div class="merc-logo"></div>
+      Mercedes-Benz
+    </div>
+    
+    <div class="nav-container">
+      <nav class="nav-links">
+        <a href="#">Vehicles</a>
+        <a href="#">Shopping</a>
+        <a href="#">AMG</a>
+        <a href="#">Owners</a>
+      </nav>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    
+    <div class="text-section">
+      <h1 class="main-title">AMG G 63</h1>
+      <p class="subtitle">
+        When no compromise will be tolerated, there is the legendary G-Class. Primed for sheer dominance.
+      </p>
+      
+      <div class="social-icons">
+        <a href="#" class="social-icon">f</a>
+        <a href="#" class="social-icon">t</a>
+      </div>
+    </div>
+
+    <div class="car-showcase">
+      <img src="images/gwagonhome (2).png" alt="Mercedes AMG G 63">
+    </div>
+
+    <div class="pagination">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="copyright">
+      &copy; 2026 Mercedes-Benz
+    </div>
+    <div class="amg-logo-text">
+      ///AMG
+    </div>
+  </footer>
+
+</body>
+</html>
